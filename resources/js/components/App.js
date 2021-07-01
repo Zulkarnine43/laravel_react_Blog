@@ -20,8 +20,26 @@ class App extends Component {
                  .catch(function (error) {
                  // handle error
                  console.log(error);
-                 })
+                 });
+
     }
+
+
+    editdata(id){ 
+        // Make a request for a user with a given ID
+        axios.get('https://jsonplaceholder.typicode.com/posts/'+id)
+        .then((response)=> {
+         console.log(response);
+        })
+        .catch(function (error) {
+        // handle error
+        console.log(error);
+        })
+}
+
+
+
+
     render() {
 
         const data=this.state.expenses;
@@ -32,6 +50,7 @@ class App extends Component {
        <td>{list.id}</td>
        <td>{list.title}</td>
        <td>{list.body}</td>
+        <button onClick={this.editdata(list.id)}>Edit</button>
         </tr>
            )
         });
@@ -45,6 +64,7 @@ class App extends Component {
                                  <th>#</th>
                                  <th>title</th>
                                  <th>body</th>
+                                 <th>Action</th>
                              </tr>
                          </thead>
                          <tbody>

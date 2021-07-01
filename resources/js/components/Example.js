@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import APP from './App'
+import HEADER from './Header'
 
 function Example() {
     return (
@@ -11,7 +12,8 @@ function Example() {
                         <div className="card-header">Example Component</div>
 
                         <div className="card-body">I'm an example component!</div>
-                        <APP></APP>
+                        {/* <APP></APP> */}
+                        <HEADER></HEADER>
                     </div>
                 </div>
             </div>
