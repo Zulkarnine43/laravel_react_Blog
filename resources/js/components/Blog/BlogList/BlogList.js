@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import {PUBLIC_URL} from '../../baseUrl';
 
 const BlogList = (props) => {
 
@@ -10,7 +11,7 @@ const BlogList = (props) => {
                 <div className="blog-entry d-md-flex">
                     <img src={props.image} className="img img-2"  alt={"Blog Data"}/>
                     <div className="text text-2 pl-md-4">
-                        <h3 className="mb-2"><Link to={`/post/${props.id}`}>Edit</Link></h3>
+                        <h3 className="mb-2"><Link to={`${PUBLIC_URL}post/${props.id}`}>Edit</Link></h3>
                         <div className="meta-wrap">
                             <p className="meta">
                                 <span><i className="icon-calendar mr-2"/>{props.date}</span>
@@ -21,7 +22,7 @@ const BlogList = (props) => {
                            
                         </p>
                         <p>
-                            <Link className="btn btn-primary" to={`/post/${props.id}`} >Read More <span
+                            <Link className="btn btn-primary" to={`${PUBLIC_URL}post/${props.id}`} >Read More <span
                                 className="ion-ios-arrow-forward"/></Link>
 
                             <a href="#" className="btn btn-danger" onClick={props.remove} style={{float : 'right' }}><span

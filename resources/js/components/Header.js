@@ -3,6 +3,7 @@ import { BrowserRouter as Router,Switch,Route,Link } from "react-router-dom";
 import Blog from './Blog/BlogIndex';
 import CreateBlog from './Blog/BlogCreate';
 import BlogDetail from "./Blog/BlogList/BlogDetail";
+import {PUBLIC_URL} from './baseUrl';
 class Header extends Component{
 render(){
         return(
@@ -13,10 +14,10 @@ render(){
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <Link className="nav-link" to="/home">Home</Link>
+                                <Link className="nav-link" to={`${PUBLIC_URL}home`}>Home</Link>
                             </li>
                             <li className="nav-item active">
-                                <Link className="nav-link" to="/create-blog">Create Blog</Link>
+                                <Link className="nav-link" to={`${PUBLIC_URL}create-blog`}>Create Blog</Link>
                             </li>
 
                         </ul>
@@ -24,13 +25,13 @@ render(){
                 </nav>
 
                 <Switch>
-                    <Route exact path="/home">
+                    <Route exact path={`${PUBLIC_URL}home`}>
                         <Blog />
                     </Route>
-                    <Route path="/create-blog">
+                    <Route path={`${PUBLIC_URL}create-blog`}>
                         <CreateBlog />
                     </Route>
-                    <Route path="/post/:id" component={props => <BlogDetail  {...props} />}>
+                    <Route path={`${PUBLIC_URL}post/:id`} component={props => <BlogDetail  {...props} />}>
                     </Route>
                 </Switch>
             </div>

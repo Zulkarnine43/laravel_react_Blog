@@ -70129,7 +70129,7 @@ var BlogCreate = /*#__PURE__*/function (_Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var postData = this.state;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost/laravel_react_first/public/api/createPost', postData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('http://localhost/laravel_react_Blog/public/api/createPost', postData).then(function (response) {
         if (response.data.status === "success") {
           console.log('successfully');
         } else {
@@ -70252,11 +70252,11 @@ var BlogIndex = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(BlogIndex, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('http://localhost/laravel_react_first/public/api/post').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('http://localhost/laravel_react_Blog/public/api/post').then(function (response) {
         _this2.setState({
           postList: response.data
         });
@@ -70267,7 +70267,7 @@ var BlogIndex = /*#__PURE__*/function (_Component) {
   }, {
     key: "removePostHandler",
     value: function removePostHandler(key, id) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('http://localhost/laravel_react_first/public/api/remove/post/' + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('http://localhost/laravel_react_Blog/public/api/remove/post/' + id).then(function (response) {
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
@@ -70329,6 +70329,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _baseUrl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../baseUrl */ "./resources/js/components/baseUrl.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70350,6 +70351,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -70377,10 +70379,13 @@ var BlogDetail = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios.get('http://localhost/laravel_react_first/public/api/post/' + this.props.match.params.id).then(function (response) {
+      axios.get('http://localhost/laravel_react_Blog/public/api/post/' + this.props.match.params.id).then(function (response) {
         _this2.setState({
           PostData: response.data
-        });
+        }); // console.log(response);
+
+
+        alert('success');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -70388,10 +70393,7 @@ var BlogDetail = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var value = this.state;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "BlogData"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "ftco-section ftco-no-pt ftco-no-pb"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -70400,7 +70402,7 @@ var BlogDetail = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-lg-8 px-md-5 py-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/home",
+        to: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_2__["PUBLIC_URL"], "home"),
         className: "btn btn-primary"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "ion-ios-arrow-back"
@@ -70408,9 +70410,9 @@ var BlogDetail = /*#__PURE__*/function (_Component) {
         className: "row pt-md-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "mb-3"
-      }, "# ", value.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, value.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: value.image,
-        alt: title,
+      }, "# ", this.state.PostData.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.PostData.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.PostData.image,
+        alt: this.state.PostData.title,
         className: "img-fluid"
       }))))))));
     }
@@ -70435,6 +70437,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _baseUrl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../baseUrl */ "./resources/js/components/baseUrl.js");
+
 
 
 
@@ -70454,7 +70458,7 @@ var BlogList = function BlogList(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "mb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/post/".concat(props.id)
+    to: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_2__["PUBLIC_URL"], "post/").concat(props.id)
   }, "Edit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "meta-wrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -70467,7 +70471,7 @@ var BlogList = function BlogList(props) {
     className: "mb-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "btn btn-primary",
-    to: "/post/".concat(props.id)
+    to: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_2__["PUBLIC_URL"], "post/").concat(props.id)
   }, "Read More ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "ion-ios-arrow-forward"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -70545,6 +70549,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Blog_BlogIndex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Blog/BlogIndex */ "./resources/js/components/Blog/BlogIndex.js");
 /* harmony import */ var _Blog_BlogCreate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Blog/BlogCreate */ "./resources/js/components/Blog/BlogCreate.js");
 /* harmony import */ var _Blog_BlogList_BlogDetail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Blog/BlogList/BlogDetail */ "./resources/js/components/Blog/BlogList/BlogDetail.js");
+/* harmony import */ var _baseUrl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./baseUrl */ "./resources/js/components/baseUrl.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70566,6 +70571,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -70600,19 +70606,19 @@ var Header = /*#__PURE__*/function (_Component) {
         className: "nav-item active"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "nav-link",
-        to: "/home"
+        to: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_5__["PUBLIC_URL"], "home")
       }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item active"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "nav-link",
-        to: "/create-blog"
+        to: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_5__["PUBLIC_URL"], "create-blog")
       }, "Create Blog"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
-        path: "/home"
+        path: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_5__["PUBLIC_URL"], "home")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Blog_BlogIndex__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/create-blog"
+        path: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_5__["PUBLIC_URL"], "create-blog")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Blog_BlogCreate__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/post/:id",
+        path: "".concat(_baseUrl__WEBPACK_IMPORTED_MODULE_5__["PUBLIC_URL"], "post/:id"),
         component: function component(props) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Blog_BlogList_BlogDetail__WEBPACK_IMPORTED_MODULE_4__["default"], props);
         }
@@ -70624,6 +70630,20 @@ var Header = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/components/baseUrl.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/baseUrl.js ***!
+  \********************************************/
+/*! exports provided: PUBLIC_URL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PUBLIC_URL", function() { return PUBLIC_URL; });
+var PUBLIC_URL = "/laravel_react_Blog/public/";
 
 /***/ }),
 
@@ -70645,8 +70665,8 @@ var Header = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\laravel_react_first\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel_react_first\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\laravel_react_Blog\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel_react_Blog\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

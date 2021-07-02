@@ -20,7 +20,7 @@ class BlogCreate extends Component{
     handleSubmit(e) {
         e.preventDefault();
         const postData = this.state;
-        axios.post('http://localhost/laravel_react_first/public/api/createPost',postData).then((response) => {
+        axios.post('http://localhost/laravel_react_Blog/public/api/createPost',postData).then((response) => {
             if(response.data.status === "success"){
                 console.log('successfully');
             }else{

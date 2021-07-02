@@ -11,8 +11,8 @@ class BlogIndex extends Component{
         };
     };
 
-    componentWillMount() {
-        axios.get('http://localhost/laravel_react_first/public/api/post').then((response) => {
+    componentDidMount() {
+        axios.get('http://localhost/laravel_react_Blog/public/api/post').then((response) => {
            this.setState({postList:response.data})
         }).catch(function(error) {
             console.log(error);
@@ -20,7 +20,7 @@ class BlogIndex extends Component{
     };
 
     removePostHandler(key,id){
-        axios.get('http://localhost/laravel_react_first/public/api/remove/post/'+id).then((response) => {
+        axios.get('http://localhost/laravel_react_Blog/public/api/remove/post/'+id).then((response) => {
             console.log(response);
         }).catch(function(error) {
             console.log(error);
